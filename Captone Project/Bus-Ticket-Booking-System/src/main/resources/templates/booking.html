@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Form</title>
+</head>
+<body>
+<div th:replace="layout :: header"></div>
+
+<h2>Book a Bus</h2>
+<form th:action="@{/bookings}" method="post" id="bookingForm">
+    <div class="mb-3">
+        <label for="bus" class="form-label">Select Bus</label>
+        <select id="bus" name="bus" class="form-select">
+            <option th:each="bus : ${buses}" th:value="${bus.id}" th:text="${bus.busNumber}"></option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="passenger" class="form-label">Passenger Name</label>
+        <input type="text" class="form-control" id="passenger" name="passenger" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="bookingDate" class="form-label">Booking Date</label>
+        <input type="datetime-local" class="form-control" id="bookingDate" name="bookingDate" required>
+    </div>
+
+    <button type="submit" class="btn btn-success">Book Now</button>
+</form>
+</body>
+</html>
